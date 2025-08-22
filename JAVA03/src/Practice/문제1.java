@@ -86,6 +86,28 @@ public class 문제1 {
 		return list;
 	}
 	
+	public static StudentDto select(int id) throws SQLException {
+		
+		pstmt = conn.prepareStatement("select * from student where id = ?");
+		
+		pstmt.setInt(1, id);
+		rs= pstmt.executeQuery();
+		StudentDto dto = null;
+		
+		if(rs != null) {
+			if(rs.next()) {
+				dto.setId(rs.getInt("id"));
+				dto.setName(rs.getString("name"));
+				dto.setMajor(rs.getString("major"));
+				dto.setGrade(rs.getString("grade"));
+				
+			}
+		}
+		
+		return dto;
+		
+	}
+	
 	
 	
 	public static void main(String[] args) {
@@ -133,10 +155,14 @@ public class 문제1 {
 		
 		// selectAll
 		
-		List<StudentDto> allStudent = selectAll();
-		System.out.println("selectAll: ");
-		allStudent.forEach(System.out::println);
+//		List<StudentDto> allStudent = selectAll();
+//		System.out.println("selectAll: ");
+//		allStudent.forEach(System.out::println);
 		
+		// select
+		
+		StudentDto studentId1 = select(1);
+		System.out.println("select" + studentId1);
 		
 		
 		}catch(Exception e1){
