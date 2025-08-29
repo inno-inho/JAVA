@@ -10,7 +10,7 @@ public class C01Clinent {
 	
 	public static void main(String[] args) throws UnknownHostException, IOException {
 		Socket client = new Socket("192.168.5.20", 7000);	// IP: 192.168.5.2
-														// 클라이언트 소켓생성 및 서버와의 연결
+															// 클라이언트 소켓생성 및 서버와의 연결
 		
 		InputStream in = client.getInputStream();
 		DataInputStream din = new DataInputStream(in);
