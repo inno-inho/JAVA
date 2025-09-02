@@ -15,15 +15,28 @@ public class C01Server {
 															// 소켓 생성, 그리고 연결
 		System.out.println("[INFO] SERVER SOCKET LISTENING");
 		
+		// 1회 접속
 		Socket client = server.accept();		// 만든 소켓 클라이언트에 접속
-		OutputStream out = client.getOutputStream();	// 밖으로 내용빼냄
-		DataOutputStream dout = new DataOutputStream(out);	
-		System.out.println("접속자 IP: " + client.getInetAddress());
-		dout.writeUTF("[SERVER] Welcome to server" + new Date());
+//		OutputStream out = client.getOutputStream();	// 밖으로 내용빼냄
+//		DataOutputStream dout = new DataOutputStream(out);	
+//		System.out.println("접속자 IP: " + client.getInetAddress());
+//		dout.writeUTF("[SERVER] Welcome to server" + new Date());
+//		dout.flush();
 		
-		dout.close();
-		out.close();
-		client.close();
+		// 루프접속
+		while(true) {
+			Socket client = server.accept();
+			OutputStream out = client.getOutputStream();
+			DataOutputStream dout = new DataOutputStream(out);
+			System.out.println("접속자 IP: " + client.getInetAddress());
+			dout.writeUTF("[SERVER] Welcome to server" + new Date());
+			dout.flush();
+			dout.close();
+			out.close();
+			client.close();
+		}
+		
+
 		server.close();
 		
 		System.out.println("[INFO] Server Exit");
