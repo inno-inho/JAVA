@@ -65,6 +65,8 @@ public class C03MethodOverriding {
 		animal = cat;
 		animal.sound();		//	ニャン！ -> Cat에서 재정의한 sound()함수
 		
+//		하위객체에서 추가한 속성/기능에 접근할 수 있다? X ->(instanceof) 다운캐스팅
+//		하위객체에서 재정의한 기능에 접근할 수 있다? O
 	}
 
 }
